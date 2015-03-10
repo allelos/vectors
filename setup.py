@@ -1,6 +1,6 @@
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name = "vectors",
@@ -11,7 +11,7 @@ setup(
         3-dimensional space",
     license = "The MIT License (MIT)",
     url = "https://github.com/allelos/vectors",
-    packages = ['vectors'],
+    packages = find_packages(),
     classifiers = [
         "Programming Language :: Python",
         "Development Status :: 4 - Beta",
