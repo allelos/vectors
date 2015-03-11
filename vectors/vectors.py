@@ -13,11 +13,17 @@ class Vector(object):
     def __repr__(self):
         return 'Vector({0}, {1}, {2})'.format(self.x, self.y, self.z)
 
+    def add(self, number):
+        """ Return a Vector instance as the product of the vector and a real
+            number. """
+
+        return self.from_list([x+number for x in self.vector])
+
     def multiply(self, number):
         """ Return a Vector instance as the product of the vector and a real
             number. """
 
-        return self.from_list([x * number for x in self.vector])
+        return self.from_list([x*number for x in self.vector])
 
     def magnitude(self):
         """ Return magnitude of the vector. """
@@ -25,7 +31,7 @@ class Vector(object):
         return (math.sqrt(reduce(lambda x,y: x+y,
                 [x**2 for x in self.vector])))
 
-    def add(self, vector):
+    def sum(self, vector):
         """ Return a Vector instance as the vector sum of two vectors. """
 
         return (self.from_list([x+vector.vector[self.vector.index(x)]
@@ -45,7 +51,7 @@ class Vector(object):
 
         if theta is not None:
             return (self.magnitude() * vector.magnitude() *
-                    math.degress(math.cos(theta)))
+                    math.degrees(math.cos(theta)))
         return (reduce(lambda x,y: x+y,
                 [x*vector.vector[self.vector.index(x)]
                 for x in self.vector]))
@@ -63,17 +69,25 @@ class Vector(object):
         return (math.degrees(math.acos((self.dot(vector) / (self.magnitude() *
             vector.magnitude())))))
 
-    def is_parallel(self, vector):
+    def parallel(self, vector):
         """ Return True if vectors are parallel to each other. """
 
         if self.cross(vector).magnitude() == 0:
             return True
         return False
 
-    def is_perpendicular(self, vector):
+    def perpendicular(self, vector):
         """ Return True if vectors are perpendicular to each other. """
 
         if self.dot(vector) == 0:
+            return True
+        return False
+
+    def non_parallel(self, vector):
+        """ Return True if vectors are non-parallel. Non-parallel vectors are
+            vectors which are neither parallel nor perpendicular to each other. """
+        if (self.is_parallel(vector) is not True and
+        self.is_perpendicular(vector) is not True):
             return True
         return False
 
