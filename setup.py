@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "vectors",
-    version = "0.0.3",
+    version = "0.0.6",
     author = "Allelos",
     author_email = "p.paliagkas@gmail.com",
     description = "A simple vector toolkit dealing with vectors in the \
