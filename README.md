@@ -18,7 +18,7 @@ pip install vectors
 
 # Documentation
 
-##Initialization 
+##Usage 
 We initialize two Vector instances after we import Vector module.
 
 ```Python
@@ -26,6 +26,15 @@ from vectors import Vector
 
 v1 = Vector(1, 2, 3) #=> Vector(1, 2, 3)
 v2 = Vector(2, 4, 6) #=> Vector(2, 4, 6)
+```
+
+We can also initialize a Vector instance with a list using the class method
+from_list().
+
+```Python
+components = [1.2, 2.4, 3.8]
+
+v = Vector.from_list(components) #=> Vector(1.2, 2.4, 3.8)
 ```
 
 ##Addition
