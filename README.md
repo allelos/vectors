@@ -18,7 +18,8 @@ pip install vectors
 
 # Documentation
 
-**Initialition** of two Vector instances after importing Vector module.
+##Initialization 
+We initialize two Vector instances after we import Vector module.
 
 ```Python
 from vectors import Vector
@@ -27,7 +28,7 @@ v1 = Vector(1, 2, 3) #=> Vector(1, 2, 3)
 v2 = Vector(2, 4, 6) #=> Vector(2, 4, 6)
 ```
 
-**Addition**
+##Addition
 
 We can add a real number to a vector or compute the vector sum of two
 vectors as follows.
@@ -39,7 +40,7 @@ v1.sum(v2) #=> Vector(3.0, 6.0, 9.0)
 ```
 Both methods return a Vector instance.
 
-**Multiplication**
+##Multiplication
 
 We can multiply a vector by a real number.
 
@@ -48,7 +49,7 @@ v1.multiply(4) #=> Vector(4.0, 8.0, 12.0)
 ```
 The above returns a Vector instance.
 
-**Dot Product**
+##Dot Product
 
 We can find the dot product of two vectors.
 
@@ -62,7 +63,7 @@ v1.dot(v2. 180)
 ```
 Dot product returns a real number.
 
-**Cross/Scalar Product**
+##Cross/Scalar Product
 
 We can find the cross product of two vectors.
 
@@ -72,7 +73,7 @@ v1.cross(v2) #=> Vector(0, 0, 0)
 Cross product returns a Vector instance, which is always perpendicular to the
 other two vectors.
 
-**Angle Theta**
+##Angle Theta
 
 We can also find the angle theta between two vectors.
 
@@ -81,7 +82,7 @@ v1.angle(v2) #=> 0.0
 ```
 Angle is a measured in degrees.
 
-**Parallel, Perpendicular, Non-Parallel**
+##Parallel, Perpendicular, Non-Parallel
 
 We can check if two vectors are parallel, perpendicular or non-parallel to each other.
 
