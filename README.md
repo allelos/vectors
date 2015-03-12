@@ -3,6 +3,7 @@ Vectors is a simple library toolkit dealing with common vector and point logic i
 3-dimensional space.
 
 Supports commonly used vector math functions including:
+  * Vector magnitude
   * Addition with another vector or a real number.
   * Multiplication by another vector or a real number.
   * Dot product
