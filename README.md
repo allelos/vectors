@@ -129,7 +129,7 @@ v1.non_parallel(v2) #=> False
 All of the above return either True or False.
 
 #TODO
-  *Create Analytic Geometry Toolkit based on the vectors toolkit.
+  * Create Analytic Geometry Toolkit based on the vectors toolkit.
 
 
 
