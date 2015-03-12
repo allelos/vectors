@@ -37,6 +37,12 @@ components = [1.2, 2.4, 3.8]
 v = Vector.from_list(components) #=> Vector(1.2, 2.4, 3.8)
 ```
 
+We can get access to the vector array to use it with other libraries.
+
+```Python
+v1.vector #=> [1, 2, 3]
+```
+
 ##Addition
 
 We can add a real number to a vector or compute the vector sum of two
