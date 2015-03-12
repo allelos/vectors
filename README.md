@@ -61,6 +61,8 @@ We can get the magnitude of the vector easily.
 
 ```Python
 v1.magnitude() #==> 3.7416573867739413
+```
+
 ##Addition
 
 We can add a real number to a vector or compute the vector sum of two
@@ -127,7 +129,7 @@ v1.non_parallel(v2) #=> False
 All of the above return either True or False.
 
 #TODO
-**Create Plane instance.
+*Create Analytic Geometry Toolkit based on the vectors toolkit.
 
 
 
