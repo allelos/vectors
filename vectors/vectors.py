@@ -1,17 +1,33 @@
 import math
 
-class Vector(object):
-    """ A simple vector toolikt dealing with vectors in the 3-dimensional
-        space. """
-
+class Point(object):
+    """ Point class: Reprepsents a point in the x, y, z space. """
     def __init__(self, x, y, z):
-        self.vector = [x, y, z]
         self.x = x
         self.y = y
         self.z = z
 
     def __repr__(self):
-        return 'Vector({0}, {1}, {2})'.format(self.x, self.y, self.z)
+        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x, self.y,
+                self.z)
+
+    def substract(self, point):
+        """ Return a Point instance as the displacement of two points. """
+        return Point(point.x - self.x, point.y - self.y, point.z - self.z)
+
+    @classmethod
+    def from_list(cls, l):
+        """ Return a Point instance from a given list """
+
+        x, y, z = map(float, l)
+        return cls(x, y, z)
+
+class Vector(Point):
+    """ Vector class: Represents a vector in the x, y, z space. """
+
+    def __init__(self, x, y, z):
+        self.vector = [x, y, z]
+        super(Vector, self).__init__(x, y, z)
 
     def add(self, number):
         """ Return a Vector instance as the product of the vector and a real
@@ -92,8 +108,10 @@ class Vector(object):
         return False
 
     @classmethod
-    def from_list(cls, l):
-        """ Return a Vector instance from a given list """
+    def from_points(cls, point1, point2):
+        """ Return a Vector instance from two given points. """
 
-        x, y, z = map(float, l)
-        return cls(x, y, z)
+        if isinstance(point1, Point) and isinstance(point2, Point):
+            displacement = point1.substract(point2)
+            return cls(displacement.x, displacement.y, displacement.z)
+        raise TypeError
