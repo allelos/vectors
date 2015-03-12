@@ -42,7 +42,12 @@ We can get access to the vector array to use it with other libraries.
 ```Python
 v1.vector #=> [1, 2, 3]
 ```
+##Magnitude
 
+We can get the magnitude of the vector easily.
+
+```Python
+v1.magnitude() #==> 3.7416573867739413
 ##Addition
 
 We can add a real number to a vector or compute the vector sum of two
