@@ -2,6 +2,7 @@ import math
 
 class Point(object):
     """ Point class: Reprepsents a point in the x, y, z space. """
+
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
@@ -12,6 +13,7 @@ class Point(object):
                 self.z)
 
     def substract(self, point):
+
         """ Return a Point instance as the displacement of two points. """
         return Point(point.x - self.x, point.y - self.y, point.z - self.z)
 
@@ -102,6 +104,7 @@ class Vector(Point):
     def non_parallel(self, vector):
         """ Return True if vectors are non-parallel. Non-parallel vectors are
             vectors which are neither parallel nor perpendicular to each other. """
+
         if (self.is_parallel(vector) is not True and
         self.is_perpendicular(vector) is not True):
             return True
