@@ -1,5 +1,5 @@
 # Vectors
-Vectors is a simple library toolkit dealing with common vector logic in the
+Vectors is a simple library toolkit dealing with common vector and point logic in the
 3-dimensional space.
 
 Supports commonly used vector math functions including:
@@ -18,18 +18,24 @@ pip install vectors
 
 # Documentation
 
-##Usage 
-We initialize two Vector instances after we import Vector module.
+##Usage
+There are multiple ways to create our vector instances using the vectors module.
+
+We can first initialize some vectors and points calling their repsective class
+contructors as follows.
 
 ```Python
-from vectors import Vector
+from vectors import Point, Vector
 
 v1 = Vector(1, 2, 3) #=> Vector(1, 2, 3)
 v2 = Vector(2, 4, 6) #=> Vector(2, 4, 6)
+
+p1 = Point(1, 2, 6)
+p2 = Point(2, 0, 2)
 ```
 
-We can also initialize a Vector instance with a list using the class method
-from_list().
+We can also create a Point instance or a Vector instance with a list
+using the class method from_list().
 
 ```Python
 components = [1.2, 2.4, 3.8]
@@ -37,7 +43,14 @@ components = [1.2, 2.4, 3.8]
 v = Vector.from_list(components) #=> Vector(1.2, 2.4, 3.8)
 ```
 
-We can get access to the vector array to use it with other libraries.
+We can also create our Vectors from two Point instances using the classmethod
+from_points().
+
+```Python
+v = Vector.from_points(p1, p2) #=> Vector(1, -2, -4)
+```
+
+We can also get access to the vector array to use it with other libraries.
 
 ```Python
 v1.vector #=> [1, 2, 3]
@@ -113,7 +126,8 @@ v1.non_parallel(v2) #=> False
 ```
 All of the above return either True or False.
 
-
+#TODO
+**Create Plane instance.
 
 
 
