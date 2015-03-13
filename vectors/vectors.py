@@ -9,8 +9,8 @@ class Point(object):
         self.z = z
 
     def __repr__(self):
-        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x, self.y,
-                self.z)
+        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x,
+                self.y, self.z)
 
     def substract(self, point):
 
@@ -103,7 +103,8 @@ class Vector(Point):
 
     def non_parallel(self, vector):
         """ Return True if vectors are non-parallel. Non-parallel vectors are
-            vectors which are neither parallel nor perpendicular to each other. """
+            vectors which are neither parallel nor perpendicular to each other.
+        """
 
         if (self.is_parallel(vector) is not True and
         self.is_perpendicular(vector) is not True):
