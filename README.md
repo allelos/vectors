@@ -1,6 +1,6 @@
 # Vectors
-Vectors is a simple library toolkit dealing with common vector and point logic in the
-3-dimensional space.
+Vectors is a simple library toolkit dealing with common vector and point logic
+in the 3-dimensional space.
 
 Supports commonly used vector math functions including:
   * Vector magnitude
@@ -120,7 +120,8 @@ Angle is a measured in degrees.
 
 ##Parallel, Perpendicular, Non-Parallel
 
-We can check if two vectors are parallel, perpendicular or non-parallel to each other.
+We can check if two vectors are parallel, perpendicular or non-parallel to each
+other.
 
 ```Python
 v1.parallel(v2) #=> True
@@ -132,6 +133,8 @@ All of the above return either True or False.
 #TODO
   * Create Analytic Geometry Toolkit based on the vectors toolkit.
 
+I'm looking for collaborators, so if you have something interesting, send a
+pull request.
 
 
 
