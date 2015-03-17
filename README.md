@@ -133,8 +133,10 @@ All of the above return either True or False.
 #TODO
   * Create Analytic Geometry Toolkit based on the vectors toolkit.
 
-*I'm looking for collaborators, so if you have something interesting, feel free
-to collaborate.*
+----
+
+**I'm looking for collaborators, so if you have something interesting, feel free
+to collaborate.**
 
 
 
