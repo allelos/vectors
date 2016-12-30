@@ -6,7 +6,6 @@ cwd = path.abspath(path.dirname(__file__))
 with open(path.join(cwd, 'README.rst')) as f:
     long_description = f.read()
 
-
 setup(
     name="vectors",
     version="1.0.0",
