@@ -9,7 +9,7 @@ with open(path.join(cwd, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name="vectors",
-    version="0.0.9",
+    version="1.0.0",
     author="Pantelis Paliagkas",
     author_email="p.paliagkas@gmail.com",
     description="A simple vector toolkit dealing with vectors and points \
