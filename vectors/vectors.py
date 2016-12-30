@@ -1,6 +1,6 @@
 from __future__ import division
-
 import math
+
 
 class Point(object):
     """ Point class: Reprepsents a point in the x, y, z space. """
@@ -12,11 +12,11 @@ class Point(object):
 
     def __repr__(self):
         return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x,
-                self.y, self.z)
+                                           self.y, self.z)
 
     def substract(self, point):
-
         """ Return a Point instance as the displacement of two points. """
+
         return Point(point.x - self.x, point.y - self.y, point.z - self.z)
 
     @classmethod
@@ -25,6 +25,7 @@ class Point(object):
 
         x, y, z = map(float, l)
         return cls(x, y, z)
+
 
 class Vector(Point):
     """ Vector class: Represents a vector in the x, y, z space. """
@@ -48,7 +49,7 @@ class Vector(Point):
     def magnitude(self):
         """ Return magnitude of the vector. """
 
-        return (math.sqrt(reduce(lambda x,y: x+y,
+        return (math.sqrt(reduce(lambda x, y: x+y,
                 [x**2 for x in self.vector])))
 
     def sum(self, vector):
@@ -62,7 +63,7 @@ class Vector(Point):
         """
 
         return (self.from_list([vector.vector[self.vector.index(x)]-x for x in
-                    self.vector]))
+                                self.vector]))
 
     def dot(self, vector, theta=None):
         """ Return the dot product of two vectors. If theta is given then the
@@ -72,22 +73,22 @@ class Vector(Point):
         if theta is not None:
             return (self.magnitude() * vector.magnitude() *
                     math.degrees(math.cos(theta)))
-        return (reduce(lambda x,y: x+y,
+        return (reduce(lambda x, y: x+y,
                 [x*vector.vector[self.vector.index(x)]
-                for x in self.vector]))
+                 for x in self.vector]))
 
     def cross(self, vector):
         """ Return a Vector instance as the cross product of two vectors """
 
         return Vector((self.y * vector.z - self.z * vector.y),
-                        (self.z * vector.x - self.x * vector.z),
-                        (self.x * vector.y - self.y * vector.x))
+                      (self.z * vector.x - self.x * vector.z),
+                      (self.x * vector.y - self.y * vector.x))
 
     def angle(self, vector):
         """ Return the angle between two vectors in degrees. """
 
         return (math.degrees(math.acos((self.dot(vector) / (self.magnitude() *
-            vector.magnitude())))))
+                vector.magnitude())))))
 
     def parallel(self, vector):
         """ Return True if vectors are parallel to each other. """
@@ -109,7 +110,7 @@ class Vector(Point):
         """
 
         if (self.is_parallel(vector) is not True and
-        self.is_perpendicular(vector) is not True):
+                self.is_perpendicular(vector) is not True):
             return True
         return False
 
