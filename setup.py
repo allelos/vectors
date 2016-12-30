@@ -1,9 +1,10 @@
-import os
 from setuptools import setup, find_packages
+from codecs import open
+from os import path
 
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+cwd = path.abspath(path.dirname(__file__))
+with open(path.join(cwd, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
 
 
 setup(
@@ -13,10 +14,10 @@ setup(
     author_email="p.paliagkas@gmail.com",
     description="A simple vector toolkit dealing with vectors and points \
         in the 3-dimensional space",
-    long_description=read('README.rst'),
+    long_description=long_description,
     license="The MIT License (MIT)",
     url="https://github.com/allelos/vectors",
-    packages=find_packages(),
+    packages=find_packages(exclude=['contrib', 'docs', 'test']),
     classifiers=[
         "Programming Language :: Python",
         "Development Status :: 4 - Beta",
