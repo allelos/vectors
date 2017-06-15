@@ -1,6 +1,6 @@
 from __future__ import division
 import math
-
+from functools import reduce
 
 class Point(object):
     """ Point class: Reprepsents a point in the x, y, z space. """
@@ -55,15 +55,15 @@ class Vector(Point):
     def sum(self, vector):
         """ Return a Vector instance as the vector sum of two vectors. """
 
-        return (self.from_list([x+vector.vector[self.vector.index(x)]
-                for x in self.vector]))
+        return (self.from_list([x+vector.vector[i]
+                for i,x in enumerate(self.vector)]))
 
     def substract(self, vector):
         """ Return a Vector instance as the vector difference of two vectors.
         """
 
-        return (self.from_list([vector.vector[self.vector.index(x)]-x for x in
-                                self.vector]))
+        return (self.from_list([vector.vector[i]-x for i,x in
+                                enumerate(self.vector)]))
 
     def dot(self, vector, theta=None):
         """ Return the dot product of two vectors. If theta is given then the
@@ -74,8 +74,8 @@ class Vector(Point):
             return (self.magnitude() * vector.magnitude() *
                     math.degrees(math.cos(theta)))
         return (reduce(lambda x, y: x+y,
-                [x*vector.vector[self.vector.index(x)]
-                 for x in self.vector]))
+                [x*vector.vector[i]
+                 for i,x in enumerate(self.vector)]))
 
     def cross(self, vector):
         """ Return a Vector instance as the cross product of two vectors """
