@@ -113,6 +113,35 @@ class Vector(Point):
                 self.is_perpendicular(vector) is not True):
             return True
         return False
+    
+    def rotate(self,angle,axis=(0,0,1)):
+        """Returns the rotated vector. Assumes angle is in radians"""
+        if(type(axis[0])!=int or type(axis[1])!=int or type(axis[2])!=int):
+            raise ValueError
+            
+        x = self.x
+        y = self.y
+        z = self.z
+        
+        '''Z axis rotation'''
+        if(axis[2]):
+            x = x*math.cos(angle) - y*math.sin(angle)
+            y = x*math.sin(angle) + y*math.cos(angle)
+            #z  = z
+            
+        '''Y axis rotation'''
+        if(axis[1]):
+            x = x*math.cos(angle) + z*math.sin(angle)
+            #y = y
+            z = -x*math.sin(angle) + z*math.cos(angle)
+            
+        '''X axis rotation'''
+        if(axis[0]):
+            #x=x
+            y = y*math.cos(angle) - z*math.sin(angle)
+            z = y*math.sin(angle) + z*math.cos(angle)
+            
+        return Vector(x,y,z)
 
     @classmethod
     def from_points(cls, point1, point2):
