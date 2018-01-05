@@ -13,6 +13,11 @@ class Point(object):
     def __repr__(self):
         return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x,
                                            self.y, self.z)
+    def __sub__(self,point):
+        """ Return a Point instance as the displacement of two points. """
+        return self.substract(point)
+    def __add__(self,point):
+        return Point(point.x + self.x, point.y + self.y, point.z + self.z)
 
     def substract(self, point):
         """ Return a Point instance as the displacement of two points. """
@@ -28,17 +33,88 @@ class Point(object):
 
 
 class Vector(Point):
-    """ Vector class: Represents a vector in the x, y, z space. """
+    """ 
+    Vector class: 
+    Representing a vector in 3D space.
+    
+    Can accept formats of: 
+    Cartesian coordinates in the x, y, z space. 
+    Spherical coordinates in the r, theta, phi space.
+    Cylindrical coordinates in the r, theta, z space.
+    
+    """
 
-    def __init__(self, x, y, z):
+    def __init__(self,*args, **kwargs):
+        """ 
+        For the args length of 3 the space must be defined as spherical,
+        cylindrical, or if none are specified its assumed to be cartesian.
+        spherical assumes the format of r, theta, and phi in that order
+        cylindrical assumes the format of r, theta, z in that order
+        cartesian assumes the format of x,y,z in that order
+        """
+        
+        if len(args)==0:
+            x = 0
+            y = 0
+            z = 0        
+        elif len(args)==1:
+            x = args[0]
+            y = 0
+            z = 0
+        elif len(args)==2:
+            x = args[0]
+            y = args[1]
+            z = 0
+        elif len(args)==3:
+            if(kwargs.has_key('spherical')):
+                if(kwargs['spherical']!=False):
+                    x = args[0]*math.sin(args[1])*math.cos(args[2])
+                    y = args[0]*math.sin(args[1])*math.sin(args[2])
+                    z = args[0]*math.cos(args[1])
+            elif(kwargs.has_key('cylindrical')):
+                if(kwargs['cylindrical']!=False):
+                    x = args[0]*math.cos(args[1])
+                    y = args[0]*math.sin(args[1])
+                    z = args[2]
+            else:
+                x = args[0]
+                y = args[1]
+                z = args[2]
+            
         self.vector = [x, y, z]
         super(Vector, self).__init__(x, y, z)
+        
+    def __add__(self,anotherVector):
+        """ Add two vectors together"""
+        if(type(anotherVector)==type(self)):
+            return Vector(self.x+anotherVector.x,self.y+anotherVector.y,self.z+anotherVector.z)
+        elif(type(anotherVector)in [float,int,long]):
+            return self.add(anotherVector)
+        else:
+            raise TypeError
+        
+    def __sub__(self,anotherVector):
+        """ Subtract two vectors"""
+        if(type(anotherVector)==type(self)):
+            return Vector(self.x-anotherVector.x,self.y-anotherVector.y,self.z-anotherVector.z)
+        elif(type(anotherVector)in [float,int,long]):
+            return Vector(self.x-anotherVector,self.y-anotherVector,self.z-anotherVector)
+        else:
+            raise TypeError
+        
+    def __mul__(self,anotherVector):
+        """ Return a Vector instance as the cross product of two vectors """
+        return self.cross(anotherVector)
+    
+    def __str__(self):
+        return "{1}{0}{2}{0}{3}".format(",",self.x,self.y,self.z)
 
     def add(self, number):
         """ Return a Vector instance as the product of the vector and a real
             number. """
 
         return self.from_list([x+number for x in self.vector])
+
 
     def multiply(self, number):
         """ Return a Vector instance as the product of the vector and a real
@@ -61,9 +137,8 @@ class Vector(Point):
     def substract(self, vector):
         """ Return a Vector instance as the vector difference of two vectors.
         """
-
-        return (self.from_list([vector.vector[i]-x for i,x in
-                                enumerate(self.vector)]))
+        
+        return self.__sub__(vector)
 
     def dot(self, vector, theta=None):
         """ Return the dot product of two vectors. If theta is given then the
@@ -114,6 +189,7 @@ class Vector(Point):
             return True
         return False
     
+    
     def rotate(self,angle,axis=(0,0,1)):
         """Returns the rotated vector. Assumes angle is in radians"""
         if(type(axis[0])!=int or type(axis[1])!=int or type(axis[2])!=int):
@@ -142,6 +218,11 @@ class Vector(Point):
             z = y*math.sin(angle) + z*math.cos(angle)
             
         return Vector(x,y,z)
+        
+    def to_points(self):
+        ''' Returns an array of [x,y,z] of the end points'''
+        
+        return [self.x,self.y,self.z]
 
     @classmethod
     def from_points(cls, point1, point2):
