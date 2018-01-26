@@ -33,30 +33,30 @@ class Point(object):
 
 
 class Vector(Point):
-    """ 
-    Vector class: 
+    """
+    Vector class:
     Representing a vector in 3D space.
-    
-    Can accept formats of: 
-    Cartesian coordinates in the x, y, z space. 
+
+    Can accept formats of:
+    Cartesian coordinates in the x, y, z space.
     Spherical coordinates in the r, theta, phi space.
     Cylindrical coordinates in the r, theta, z space.
-    
+
     """
 
     def __init__(self,*args, **kwargs):
-        """ 
+        """
         For the args length of 3 the space must be defined as spherical,
         cylindrical, or if none are specified its assumed to be cartesian.
         spherical assumes the format of r, theta, and phi in that order
         cylindrical assumes the format of r, theta, z in that order
         cartesian assumes the format of x,y,z in that order
         """
-        
+
         if len(args)==0:
             x = 0
             y = 0
-            z = 0        
+            z = 0
         elif len(args)==1:
             x = args[0]
             y = 0
@@ -80,10 +80,10 @@ class Vector(Point):
                 x = args[0]
                 y = args[1]
                 z = args[2]
-            
+
         self.vector = [x, y, z]
         super(Vector, self).__init__(x, y, z)
-        
+
     def __add__(self,anotherVector):
         """ Add two vectors together"""
         if(type(anotherVector)==type(self)):
@@ -92,7 +92,7 @@ class Vector(Point):
             return self.add(anotherVector)
         else:
             raise TypeError
-        
+
     def __sub__(self,anotherVector):
         """ Subtract two vectors"""
         if(type(anotherVector)==type(self)):
@@ -101,11 +101,11 @@ class Vector(Point):
             return Vector(self.x-anotherVector,self.y-anotherVector,self.z-anotherVector)
         else:
             raise TypeError
-        
+
     def __mul__(self,anotherVector):
         """ Return a Vector instance as the cross product of two vectors """
         return self.cross(anotherVector)
-    
+
     def __str__(self):
         return "{1}{0}{2}{0}{3}".format(",",self.x,self.y,self.z)
 
@@ -134,10 +134,10 @@ class Vector(Point):
         return (self.from_list([x+vector.vector[i]
                 for i,x in enumerate(self.vector)]))
 
-    def substract(self, vector):
+    def subtract(self, vector):
         """ Return a Vector instance as the vector difference of two vectors.
         """
-        
+
         return self.__sub__(vector)
 
     def dot(self, vector, theta=None):
@@ -188,40 +188,40 @@ class Vector(Point):
                 self.is_perpendicular(vector) is not True):
             return True
         return False
-    
-    
+
+
     def rotate(self,angle,axis=(0,0,1)):
         """Returns the rotated vector. Assumes angle is in radians"""
         if(type(axis[0])!=int or type(axis[1])!=int or type(axis[2])!=int):
             raise ValueError
-            
+
         x = self.x
         y = self.y
         z = self.z
-        
+
         '''Z axis rotation'''
         if(axis[2]):
             x = x*math.cos(angle) - y*math.sin(angle)
             y = x*math.sin(angle) + y*math.cos(angle)
             #z  = z
-            
+
         '''Y axis rotation'''
         if(axis[1]):
             x = x*math.cos(angle) + z*math.sin(angle)
             #y = y
             z = -x*math.sin(angle) + z*math.cos(angle)
-            
+
         '''X axis rotation'''
         if(axis[0]):
             #x=x
             y = y*math.cos(angle) - z*math.sin(angle)
             z = y*math.sin(angle) + z*math.cos(angle)
-            
+
         return Vector(x,y,z)
-        
+
     def to_points(self):
         ''' Returns an array of [x,y,z] of the end points'''
-        
+
         return [self.x,self.y,self.z]
 
     @classmethod
