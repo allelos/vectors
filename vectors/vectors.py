@@ -5,32 +5,52 @@ from functools import reduce
 class Point(object):
     """ Point class: Reprepsents a point in the x, y, z space. """
 
-    def __init__(self, x, y, z):
+    def __init__(self, x, y, z=0):
         self.x = x
         self.y = y
         self.z = z
 
     def __repr__(self):
-        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x,
-                                           self.y, self.z)
+        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x, self.y, self.z)
+
     def __sub__(self,point):
         """ Return a Point instance as the displacement of two points. """
-        return self.substract(point)
+	if type(point) is Point:
+        	return self.substract(point)
+	else:
+		raise TypeError
+
     def __add__(self,point):
-        return Point(point.x + self.x, point.y + self.y, point.z + self.z)
+	if type(point) is Point:
+		if self.z and point.z:
+        		return Point(point.x + self.x, point.y + self.y, point.z + self.z)
+		elif self.z:
+			return Point(point.x + self.x, point.y + self.y, self.z)
+		elif point.z:
+			return Point(point.x + self.x, point.y + self.y, point.z)
+		else:
+			return Point(point.x + self.x, point.y + self.y)
+	else:
+		raise TypeError
 
     def substract(self, point):
         """ Return a Point instance as the displacement of two points. """
-
-        return Point(point.x - self.x, point.y - self.y, point.z - self.z)
+	if type(point) is Point:
+        	return Point(point.x - self.x, point.y - self.y, point.z - self.z)
+	else:
+		raise TypeError
 
     @classmethod
     def from_list(cls, l):
         """ Return a Point instance from a given list """
-
-        x, y, z = map(float, l)
-        return cls(x, y, z)
-
+	if len(l) == 3:
+        	x, y, z = map(float, l)
+        	return cls(x, y, z)
+	elif len(l) == 2:
+		x, y = map(float, l)
+		return cls(x, y)
+	else:
+		raise AttributeError
 
 class Vector(Point):
     """
