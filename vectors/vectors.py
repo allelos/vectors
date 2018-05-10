@@ -159,6 +159,13 @@ class Vector(Point):
                       (self.z * vector.x - self.x * vector.z),
                       (self.x * vector.y - self.y * vector.x))
 
+    def unit(self):
+	""" Return a Vector instance of the unit vector """
+
+	return Vector((self.x / self.magnitude()),
+		      (self.y / self.magnitude()),
+		      (self.z / self.magnitude()))
+
     def angle(self, vector):
         """ Return the angle between two vectors in degrees. """
 
