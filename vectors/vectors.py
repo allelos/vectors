@@ -259,3 +259,12 @@ class Vector(Point):
             displacement = point1.substract(point2)
             return cls(displacement.x, displacement.y, displacement.z)
         raise TypeError
+
+    @classmethod
+    def from_mag_and_dir(cls, mag, theta, phi=0):
+	'''Return a Vector instance from a magnitude and up to two directions(theta is angle on xy plane and phi is angle from xy plane to vector)'''
+
+	if phi == 0:
+		return cls(mag * math.cos(theta), mag * math.sin(theta), 0)
+	else:
+		return cls(mag * math.cos(phi) * math.cos(theta), mag * math.cos(phi) * math.sin(theta), mag * math.sin(phi))

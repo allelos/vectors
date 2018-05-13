@@ -57,6 +57,14 @@ We can also get access to the vector array to use it with other libraries.
 ```Python
 v1.vector #=> [1, 2, 3]
 ```
+
+We can also create our Vectors from a maginitude and up to two directions theta and phi.
+
+```Python
+v1 = Vector.from_mag_and_dir(1, math.pi) #=> Vector(-1,0,0)
+v2 = Vector.from_mag_and_dir(1, 0, (math.pi / 2)) #=> Vector(0,0,1)
+```
+
 ##Magnitude
 
 We can get the magnitude of the vector easily.
