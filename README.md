@@ -8,6 +8,7 @@ Supports commonly used vector math functions including:
   * Multiplication by another vector or a real number.
   * Dot product
   * Cross/scalar product
+  * Create a unit vector of a vector
   * Angle between vectors
   * Check if two vectors are perpendicular, parallel or non-parallel
 
