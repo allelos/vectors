@@ -58,50 +58,15 @@ class Vector(Point):
     Representing a vector in 3D space.
 
     Can accept formats of:
-    Cartesian coordinates in the x, y, z space.
-    Spherical coordinates in the r, theta, phi space.
-    Cylindrical coordinates in the r, theta, z space.
-
+    Cartesian coordinates in the x, y, z space.(Regular initialization)
+    Spherical coordinates in the r, theta, phi space.(Spherical class method)
+    Cylindrical coordinates in the r, theta, z space.(Cylindrical class method)
     """
 
-    def __init__(self,*args, **kwargs):
-        """
-        For the args length of 3 the space must be defined as spherical,
-        cylindrical, or if none are specified its assumed to be cartesian.
-        spherical assumes the format of r, theta, and phi in that order
-        cylindrical assumes the format of r, theta, z in that order
-        cartesian assumes the format of x,y,z in that order
-        """
-
-        if len(args)==0:
-            x = 0
-            y = 0
-            z = 0
-        elif len(args)==1:
-            x = args[0]
-            y = 0
-            z = 0
-        elif len(args)==2:
-            x = args[0]
-            y = args[1]
-            z = 0
-        elif len(args)==3:
-            if(kwargs.has_key('spherical')):
-                if(kwargs['spherical']!=False):
-                    x = args[0]*math.sin(args[1])*math.cos(args[2])
-                    y = args[0]*math.sin(args[1])*math.sin(args[2])
-                    z = args[0]*math.cos(args[1])
-            elif(kwargs.has_key('cylindrical')):
-                if(kwargs['cylindrical']!=False):
-                    x = args[0]*math.cos(args[1])
-                    y = args[0]*math.sin(args[1])
-                    z = args[2]
-            else:
-                x = args[0]
-                y = args[1]
-                z = args[2]
-
-        self.vector = [x, y, z]
+    def __init__(self, x, y, z):
+	'''Vectors are created in rectangular coordniates
+	to create a vector in spherical or cylindrical
+	see the class methods'''
         super(Vector, self).__init__(x, y, z)
 
     def __add__(self,anotherVector):
@@ -261,10 +226,11 @@ class Vector(Point):
         raise TypeError
 
     @classmethod
-    def from_mag_and_dir(cls, mag, theta, phi=0):
-	'''Return a Vector instance from a magnitude and up to two directions(theta is angle on xy plane and phi is angle from xy plane to vector)'''
+    def spherical(cls, mag, theta, phi=0):
+	'''Returns a Vector instance from spherical coordinates'''
+	return cls(mag * math.sin(phi) * math.cos(theta), mag * math.sin(phi) * math.sin(theta), mag * math.cos(phi))
 
-	if phi == 0:
-		return cls(mag * math.cos(theta), mag * math.sin(theta), 0)
-	else:
-		return cls(mag * math.cos(phi) * math.cos(theta), mag * math.cos(phi) * math.sin(theta), mag * math.sin(phi))
+    @classmethod
+    def cylindrical(cls, mag, theta, z=0):
+	'''Returns a Vector instance from cylindircal coordinates'''
+	return cls(mag * math.cos(theta), mag * math.sin(theta), z)
