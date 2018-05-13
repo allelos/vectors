@@ -109,6 +109,15 @@ v1.cross(v2) #=> Vector(0, 0, 0)
 Cross product returns a Vector instance, which is always perpendicular to the
 other two vectors.
 
+##Unit Vector
+
+We can find the unit vector of a given vector.
+
+```Python
+v1.unit() #=> Vector(0.267261241912, 0.534522483825, 0.801783725737)
+```
+Unit vector function returns a Vector instance that has a magnitude of 1.
+
 ##Angle Theta
 
 We can also find the angle theta between two vectors.
