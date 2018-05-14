@@ -8,6 +8,7 @@ Supports commonly used vector math functions including:
   * Multiplication by another vector or a real number.
   * Dot product
   * Cross/scalar product
+  * Create a unit vector of a vector
   * Angle between vectors
   * Check if two vectors are perpendicular, parallel or non-parallel
 
@@ -56,6 +57,14 @@ We can also get access to the vector array to use it with other libraries.
 ```Python
 v1.vector #=> [1, 2, 3]
 ```
+
+We can also create our Vectors from a maginitude and up to two directions theta and phi.
+
+```Python
+v1 = Vector.from_mag_and_dir(1, math.pi) #=> Vector(-1,0,0)
+v2 = Vector.from_mag_and_dir(1, 0, (math.pi / 2)) #=> Vector(0,0,1)
+```
+
 ##Magnitude
 
 We can get the magnitude of the vector easily.
@@ -108,6 +117,15 @@ v1.cross(v2) #=> Vector(0, 0, 0)
 ```
 Cross product returns a Vector instance, which is always perpendicular to the
 other two vectors.
+
+##Unit Vector
+
+We can find the unit vector of a given vector.
+
+```Python
+v1.unit() #=> Vector(0.267261241912, 0.534522483825, 0.801783725737)
+```
+Unit vector function returns a Vector instance that has a magnitude of 1.
 
 ##Angle Theta
 

@@ -5,32 +5,52 @@ from functools import reduce
 class Point(object):
     """ Point class: Reprepsents a point in the x, y, z space. """
 
-    def __init__(self, x, y, z):
+    def __init__(self, x, y, z=0):
         self.x = x
         self.y = y
         self.z = z
 
     def __repr__(self):
-        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x,
-                                           self.y, self.z)
+        return '{0}({1}, {2}, {3})'.format(self.__class__.__name__, self.x, self.y, self.z)
+
     def __sub__(self,point):
         """ Return a Point instance as the displacement of two points. """
-        return self.substract(point)
+	if type(point) is Point:
+        	return self.substract(point)
+	else:
+		raise TypeError
+
     def __add__(self,point):
-        return Point(point.x + self.x, point.y + self.y, point.z + self.z)
+	if type(point) is Point:
+		if self.z and point.z:
+        		return Point(point.x + self.x, point.y + self.y, point.z + self.z)
+		elif self.z:
+			return Point(point.x + self.x, point.y + self.y, self.z)
+		elif point.z:
+			return Point(point.x + self.x, point.y + self.y, point.z)
+		else:
+			return Point(point.x + self.x, point.y + self.y)
+	else:
+		raise TypeError
 
     def substract(self, point):
         """ Return a Point instance as the displacement of two points. """
-
-        return Point(point.x - self.x, point.y - self.y, point.z - self.z)
+	if type(point) is Point:
+        	return Point(point.x - self.x, point.y - self.y, point.z - self.z)
+	else:
+		raise TypeError
 
     @classmethod
     def from_list(cls, l):
         """ Return a Point instance from a given list """
-
-        x, y, z = map(float, l)
-        return cls(x, y, z)
-
+	if len(l) == 3:
+        	x, y, z = map(float, l)
+        	return cls(x, y, z)
+	elif len(l) == 2:
+		x, y = map(float, l)
+		return cls(x, y)
+	else:
+		raise AttributeError
 
 class Vector(Point):
     """
@@ -38,50 +58,15 @@ class Vector(Point):
     Representing a vector in 3D space.
 
     Can accept formats of:
-    Cartesian coordinates in the x, y, z space.
-    Spherical coordinates in the r, theta, phi space.
-    Cylindrical coordinates in the r, theta, z space.
-
+    Cartesian coordinates in the x, y, z space.(Regular initialization)
+    Spherical coordinates in the r, theta, phi space.(Spherical class method)
+    Cylindrical coordinates in the r, theta, z space.(Cylindrical class method)
     """
 
-    def __init__(self,*args, **kwargs):
-        """
-        For the args length of 3 the space must be defined as spherical,
-        cylindrical, or if none are specified its assumed to be cartesian.
-        spherical assumes the format of r, theta, and phi in that order
-        cylindrical assumes the format of r, theta, z in that order
-        cartesian assumes the format of x,y,z in that order
-        """
-
-        if len(args)==0:
-            x = 0
-            y = 0
-            z = 0
-        elif len(args)==1:
-            x = args[0]
-            y = 0
-            z = 0
-        elif len(args)==2:
-            x = args[0]
-            y = args[1]
-            z = 0
-        elif len(args)==3:
-            if(kwargs.has_key('spherical')):
-                if(kwargs['spherical']!=False):
-                    x = args[0]*math.sin(args[1])*math.cos(args[2])
-                    y = args[0]*math.sin(args[1])*math.sin(args[2])
-                    z = args[0]*math.cos(args[1])
-            elif(kwargs.has_key('cylindrical')):
-                if(kwargs['cylindrical']!=False):
-                    x = args[0]*math.cos(args[1])
-                    y = args[0]*math.sin(args[1])
-                    z = args[2]
-            else:
-                x = args[0]
-                y = args[1]
-                z = args[2]
-
-        self.vector = [x, y, z]
+    def __init__(self, x, y, z):
+	'''Vectors are created in rectangular coordniates
+	to create a vector in spherical or cylindrical
+	see the class methods'''
         super(Vector, self).__init__(x, y, z)
 
     def __add__(self,anotherVector):
@@ -159,6 +144,13 @@ class Vector(Point):
                       (self.z * vector.x - self.x * vector.z),
                       (self.x * vector.y - self.y * vector.x))
 
+    def unit(self):
+	""" Return a Vector instance of the unit vector """
+
+	return Vector((self.x / self.magnitude()),
+		      (self.y / self.magnitude()),
+		      (self.z / self.magnitude()))
+
     def angle(self, vector):
         """ Return the angle between two vectors in degrees. """
 
@@ -232,3 +224,13 @@ class Vector(Point):
             displacement = point1.substract(point2)
             return cls(displacement.x, displacement.y, displacement.z)
         raise TypeError
+
+    @classmethod
+    def spherical(cls, mag, theta, phi=0):
+	'''Returns a Vector instance from spherical coordinates'''
+	return cls(mag * math.sin(phi) * math.cos(theta), mag * math.sin(phi) * math.sin(theta), mag * math.cos(phi))
+
+    @classmethod
+    def cylindrical(cls, mag, theta, z=0):
+	'''Returns a Vector instance from cylindircal coordinates'''
+	return cls(mag * math.cos(theta), mag * math.sin(theta), z)
