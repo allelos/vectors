@@ -1,5 +1,6 @@
 from __future__ import division
 import math
+from numbers import Real
 from functools import reduce
 
 class Point(object):
@@ -73,7 +74,7 @@ class Vector(Point):
         """ Add two vectors together"""
         if(type(anotherVector)==type(self)):
             return Vector(self.x+anotherVector.x,self.y+anotherVector.y,self.z+anotherVector.z)
-        elif(type(anotherVector)in [float,int,long]):
+        elif isinstance(anotherVector, Real):
             return self.add(anotherVector)
         else:
             raise TypeError
@@ -82,7 +83,7 @@ class Vector(Point):
         """ Subtract two vectors"""
         if(type(anotherVector)==type(self)):
             return Vector(self.x-anotherVector.x,self.y-anotherVector.y,self.z-anotherVector.z)
-        elif(type(anotherVector)in [float,int,long]):
+        elif isinstance(anotherVector, Real):
             return Vector(self.x-anotherVector,self.y-anotherVector,self.z-anotherVector)
         else:
             raise TypeError
