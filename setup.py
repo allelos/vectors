@@ -3,7 +3,7 @@ from codecs import open
 from os import path
 
 cwd = path.abspath(path.dirname(__file__))
-with open(path.join(cwd, 'README.rst')) as f:
+with open(path.join(cwd, 'README.md')) as f:
     long_description = f.read()
 
 setup(
