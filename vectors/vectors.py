@@ -206,19 +206,19 @@ class Vector(Point):
         z = self.z
         # Z axis rotation
         if(axis[2]):
-            x = x * Decimal(math.cos(angle)) - y * Decimal(math.sin(angle))
-            y = x * Decimal(math.sin(angle)) + y * Decimal(math.cos(angle))
+            x = (x * Decimal(math.cos(angle))) - (y * Decimal(math.sin(angle)))
+            y = (x * Decimal(math.sin(angle))) + (y * Decimal(math.cos(angle)))
 
-        # Y axis rotation
+        # Y axis( rotation
         if(axis[1]):
-            x = x * Decimal(math.cos(angle)) + z * Decimal(math.sin(angle))
-            z = -x * Decimal(math.sin(angle)) + z * Decimal(math.cos(angle))
+            x = (x * Decimal(math.cos(angle))) + (z * Decimal(math.sin(angle)))
+            z = (-x * Decimal(math.sin(angle))) + (z * Decimal(math.cos(angle)))
 
-        # X axis rotation
+        # X axis( rotation
         if(axis[0]):
-            # x=x
-            y = y * Decimal(math.cos(angle)) - z * Decimal(math.sin(angle))
-            z = y * Decimal(math.sin(angle)) + z * Decimal(math.cos(angle))
+            # x=(x
+            y = (y * Decimal(math.cos(angle))) - (z * Decimal(math.sin(angle)))
+            z = (y * Decimal(math.sin(angle))) + (z * Decimal(math.cos(angle)))
 
         return Vector(x, y, z)
 
