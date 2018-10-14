@@ -1,4 +1,6 @@
 from __future__ import division
+
+from decimal import Decimal
 from functools import reduce
 import math
 from numbers import Real
@@ -74,7 +76,7 @@ class Vector(Point):
         to create a vector in spherical or cylindrical
         see the class methods
         '''
-        super(Vector, self).__init__(x, y, z)
+        super(Vector, self).__init__(Decimal(x), Decimal(y), Decimal(z))
 
     def __add__(self, vec):
         """Add two vectors together"""
