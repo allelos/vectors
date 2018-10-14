@@ -41,6 +41,13 @@ class Point(object):
         else:
             raise TypeError
 
+    def __eq__(self, pt):
+        return (
+            self.x == pt.x and
+            self.y == pt.y and
+            self.z == pt.z
+        )
+
     def substract(self, pt):
         """Return a Point instance as the displacement of two points."""
         if isinstance(pt, Point):
