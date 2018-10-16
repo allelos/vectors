@@ -20,7 +20,7 @@ pip install vectors
 
 # Documentation
 
-##Usage
+## Usage
 There are multiple ways to create our vector instances using the vectors module.
 
 We can first initialize some vectors and points calling their repsective class
@@ -65,7 +65,7 @@ v1 = Vector.from_mag_and_dir(1, math.pi) #=> Vector(-1,0,0)
 v2 = Vector.from_mag_and_dir(1, 0, (math.pi / 2)) #=> Vector(0,0,1)
 ```
 
-##Magnitude
+## Magnitude
 
 We can get the magnitude of the vector easily.
 
@@ -73,7 +73,7 @@ We can get the magnitude of the vector easily.
 v1.magnitude() #==> 3.7416573867739413
 ```
 
-##Addition
+## Addition
 
 We can add a real number to a vector or compute the vector sum of two
 vectors as follows.
@@ -85,7 +85,7 @@ v1.sum(v2) #=> Vector(3.0, 6.0, 9.0)
 ```
 Both methods return a Vector instance.
 
-##Multiplication
+## Multiplication
 
 We can multiply a vector by a real number.
 
@@ -94,7 +94,7 @@ v1.multiply(4) #=> Vector(4.0, 8.0, 12.0)
 ```
 The above returns a Vector instance.
 
-##Dot Product
+## Dot Product
 
 We can find the dot product of two vectors.
 
@@ -108,7 +108,7 @@ v1.dot(v2. 180)
 ```
 Dot product returns a real number.
 
-##Cross/Scalar Product
+## Cross/Scalar Product
 
 We can find the cross product of two vectors.
 
@@ -118,7 +118,7 @@ v1.cross(v2) #=> Vector(0, 0, 0)
 Cross product returns a Vector instance, which is always perpendicular to the
 other two vectors.
 
-##Unit Vector
+## Unit Vector
 
 We can find the unit vector of a given vector.
 
@@ -127,7 +127,7 @@ v1.unit() #=> Vector(0.267261241912, 0.534522483825, 0.801783725737)
 ```
 Unit vector function returns a Vector instance that has a magnitude of 1.
 
-##Angle Theta
+## Angle Theta
 
 We can also find the angle theta between two vectors.
 
@@ -136,7 +136,7 @@ v1.angle(v2) #=> 0.0
 ```
 Angle is a measured in degrees.
 
-##Parallel, Perpendicular, Non-Parallel
+## Parallel, Perpendicular, Non-Parallel
 
 We can check if two vectors are parallel, perpendicular or non-parallel to each
 other.
