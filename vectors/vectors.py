@@ -109,28 +109,24 @@ class Vector(Point):
     def __str__(self):
         return "{0},{1},{2}".format(self.x, self.y, self.z)
 
-    @property
-    def vector(self):
-        return [self.x, self.y, self.z]
-
     def add(self, number):
         """Return a Vector as the product of the vector and a real number."""
-        return self.from_list([x + number for x in self.vector])
+        return self.from_list([x + number for x in self])
 
     def multiply(self, number):
         """Return a Vector as the product of the vector and a real number."""
-        return self.from_list([x * number for x in self.vector])
+        return self.from_list([x * number for x in self.to_points()])
 
     def magnitude(self):
         """Return magnitude of the vector."""
         return math.sqrt(
-            reduce(lambda x, y: x + y, [x ** 2 for x in self.vector])
+            reduce(lambda x, y: x + y, [x ** 2 for x in self.to_points()])
         )
 
     def sum(self, vector):
         """Return a Vector instance as the vector sum of two vectors."""
         return self.from_list(
-            [x + vector.vector[i] for i, x in enumerate(self.vector)]
+            [x + vector.vector[i] for i, x in self.to_points()]
         )
 
     def subtract(self, vector):
@@ -148,7 +144,7 @@ class Vector(Point):
             return (self.magnitude() * vector.magnitude() *
                     math.degrees(math.cos(theta)))
         return (reduce(lambda x, y: x + y,
-                [x * vector.vector[i] for i, x in enumerate(self.vector)]))
+                [x * vector.vector[i] for i, x in self.to_points()]))
 
     def cross(self, vector):
         """Return a Vector instance as the cross product of two vectors"""
