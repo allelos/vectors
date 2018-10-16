@@ -119,18 +119,18 @@ class Vector(Point):
 
     def multiply(self, number):
         """Return a Vector as the product of the vector and a real number."""
-        return self.from_list([x * number for x in self.to_list()()])
+        return self.from_list([x * number for x in self.to_list()])
 
     def magnitude(self):
         """Return magnitude of the vector."""
         return math.sqrt(
-            reduce(lambda x, y: x + y, [x ** 2 for x in self.to_list()()])
+            reduce(lambda x, y: x + y, [x ** 2 for x in self.to_list()])
         )
 
     def sum(self, vector):
         """Return a Vector instance as the vector sum of two vectors."""
         return self.from_list(
-            [x + vector.vector[i] for i, x in self.to_list()()]
+            [x + vector.vector[i] for i, x in self.to_list()]
         )
 
     def subtract(self, vector):
