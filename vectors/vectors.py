@@ -148,7 +148,7 @@ class Vector(Point):
             return (self.magnitude() * vector.magnitude() *
                     math.degrees(math.cos(theta)))
         return (reduce(lambda x, y: x + y,
-                [x * vector.vector[i] for i, x in self.to_list()()]))
+                [x * vector.to_list()[i] for i, x in enumerate(self.to_list())]))
 
     def cross(self, vector):
         """Return a Vector instance as the cross product of two vectors"""
