@@ -113,6 +113,11 @@ class Vector(Point):
     def __str__(self):
         return "{0},{1},{2}".format(self.x, self.y, self.z)
 
+    def __round__(self, n=None):
+        if n is not None:
+            return Vector(round(self.x, n), round(self.y, n), round(self.z, n))
+        return Vector(round(self.x), round(self.y), round(self.z))
+
     def add(self, number):
         """Return a Vector as the product of the vector and a real number."""
         return self.from_list([x + number for x in self])
