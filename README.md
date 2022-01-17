@@ -32,8 +32,8 @@ from vectors import Point, Vector
 v1 = Vector(1, 2, 3) #=> Vector(1, 2, 3)
 v2 = Vector(2, 4, 6) #=> Vector(2, 4, 6)
 
-p1 = Point(1, 2, 6) #=> Point(1, 2, 3)
-p2 = Point(2, 0, 2) #=> Point(2, 4, 6)
+p1 = Point(1, 2, 6) #=> Point(1, 2, 6)
+p2 = Point(2, 0, 2) #=> Point(2, 0, 2)
 ```
 
 We can also create a Point instance or a Vector instance with a list
