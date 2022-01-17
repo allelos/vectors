@@ -6,7 +6,7 @@ from numbers import Real
 
 
 class Point(object):
-    """Point class: Reprepsents a point in the x, y, z space."""
+    """Point class: Represents a point in the x, y, z space."""
     def __init__(self, x, y, z=0):
         self.x = x
         self.y = y
@@ -81,7 +81,7 @@ class Vector(Point):
     """
 
     def __init__(self, x, y, z):
-        '''Vectors are created in rectangular coordniates
+        '''Vectors are created in rectangular coordinates
 
         to create a vector in spherical or cylindrical
         see the class methods
@@ -247,7 +247,7 @@ class Vector(Point):
 
     @classmethod
     def cylindrical(cls, mag, theta, z=0):
-        '''Returns a Vector instance from cylindircal coordinates'''
+        '''Returns a Vector instance from cylindrical coordinates'''
         return cls(
             mag * math.cos(theta),  # X
             mag * math.sin(theta),  # Y
