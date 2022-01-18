@@ -23,8 +23,8 @@ pip install vectors
 ## Usage
 There are multiple ways to create our vector instances using the vectors module.
 
-We can first initialize some vectors and points calling their repsective class
-contructors as follows.
+We can first initialize some vectors and points calling their respective class
+constructors as follows.
 
 ```Python
 from vectors import Point, Vector
@@ -58,7 +58,7 @@ We can also get access to the vector array to use it with other libraries.
 v1.vector #=> [1, 2, 3]
 ```
 
-We can also create our Vectors from a maginitude and up to two directions theta and phi.
+We can also create our Vectors from a magnitude and up to two directions theta and phi.
 
 ```Python
 v1 = Vector.from_mag_and_dir(1, math.pi) #=> Vector(-1,0,0)
