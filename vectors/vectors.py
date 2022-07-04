@@ -150,8 +150,7 @@ class Vector(Point):
         is measured in degrees.
         """
         if theta is not None:
-            return (self.magnitude() * vector.magnitude() *
-                    math.degrees(math.cos(theta)))
+            return self.magnitude() * vector.magnitude() * math.cos(math.radians(theta))
         return (reduce(lambda x, y: x + y,
                 [x * vector.to_list()[i] for i, x in enumerate(self.to_list())]))
 
